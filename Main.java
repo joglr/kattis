@@ -83,24 +83,24 @@ public class Main {
 	 * Merges the set containing element {@code p} with the the set containing
 	 * element {@code q}.
 	 *
-	 * @param p one element
-	 * @param q the other element
+	 * @param s one element
+	 * @param t the other element
 	 * @throws IllegalArgumentException unless both {@code 0 <= p < n} and
 	 *                                  {@code 0 <= q < n}
 	 */
-	public void union(final int p, final int q) {
-		final int rootP = find(p);
-		final int rootQ = find(q);
-		if (rootP == rootQ)
+	public void union(final int s, final int t) {
+		final int S = find(s);
+		final int T = find(t);
+		if (S == T)
 			return;
 
 		// make smaller root point to larger one
-		if (size[rootP] < size[rootQ]) {
-			id[rootP] = rootQ;
-			size[rootQ] += size[rootP];
+		if (size[S] < size[T]) {
+			id[S] = T;
+			size[T] += size[S];
 		} else {
-			id[rootQ] = rootP;
-			size[rootP] += size[rootQ];
+			id[T] = S;
+			size[S] += size[T];
 		}
 		count--;
 	}
@@ -111,15 +111,15 @@ public class Main {
 		if (S == T)
 			return;
 
-
+    
 		// if (size[S] < size[T]) {
-			id[S] = T;
+			id[s] = T;
 			size[T] += size[S];
 		// } else {
 		// 	id[T] = S;
 		// 	size[S] += size[T];
 		// }
-		count--;
+		
 	}
 	/**
 	 * Reads in a an integer {@code n} and a sequence of pairs of integers (between
@@ -149,10 +149,7 @@ public class Main {
 			union(s, t);
 			break;
 		case 2:
-
-			union(s, t);
-			// Use union for now
-			// move(s, t);
+			move(s, t);
 			break;
 		default:
 			throw new IllegalArgumentException(" *** unknown operation:" + operation);
@@ -168,7 +165,7 @@ public class Main {
 			final int q = StdIn.readInt();
 			final int r = StdIn.readInt();
 			final int[] nums = new int[] { p, q, r };
-			uf.receiveInput(nums);
+      uf.receiveInput(nums);
 		}
 	}
 
