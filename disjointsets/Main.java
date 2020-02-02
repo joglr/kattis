@@ -11,7 +11,9 @@ public class Main {
   private int n; // amount of disjoint sets
   private int m; // amount of operations
   private int[] id;
+  private int[] size; // size[i] = number of elements in subtree rooted at i
 
+  
   public static void main(String[] args) throws NumberFormatException, IOException {
 
     BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -26,7 +28,8 @@ public class Main {
     n = numbers[0];
     m = numbers[1];
     id = new int[n];
-
+    size = new int[n];
+    
     for (int i = 0; i < n; i++) {
       id[i] = i;
     }
@@ -63,34 +66,99 @@ public class Main {
       throw new IllegalArgumentException(" *** unknown operation");
     }
   }
+  
+	/**
+	 * Returns the number of sets.
+	 *
+	 * @return the number of sets (between {@code 1} and {@code n})
+	 */
+	public int m() {
+		return m;
+	}
+
+	/**
+	 * Returns the canonical element of the set containing element {@code p}.
+	 *
+	 * @param p an element
+	 * @return the canonical element of the set containing {@code p}
+	 * @throws IllegalArgumentException unless {@code 0 <= p < n}
+	 */
+	public int find(int p) {
+		validate(p);
+		while (p != id[p])
+			p = id[p];
+		return p;
+	}
+
+	/**
+	 * Returns true if the two elements are in the same set.
+	 * 
+	 * @param p one element
+	 * @param q the other element
+	 * @return {@code true} if {@code p} and {@code q} are in the same set;
+	 *         {@code false} otherwise
+	 * @throws IllegalArgumentException unless both {@code 0 <= p < n} and
+	 *                                  {@code 0 <= q < n}
+	 * @deprecated Replace with two calls to {@link #find(int)}.
+	 */
+	@Deprecated
+	public boolean connected(final int p, final int q) {
+		return find(p) == find(q);
+	}
+
+	// validate that p is a valid index
+	private void validate(final int p) {
+		final int n = id.length;
+		if (p < 0 || p >= n) {
+			throw new IllegalArgumentException("index " + p + " is not between 0 and " + (n - 1));
+		}
+	}
+
+	/**
+	 * Merges the set containing element {@code p} with the the set containing
+	 * element {@code q}.
+	 *
+	 * @param p one element
+	 * @param q the other element
+	 * @throws IllegalArgumentException unless both {@code 0 <= p < n} and
+	 *                                  {@code 0 <= q < n}
+	 */
+	public void union(final int p, final int q) {
+		final int rootP = find(p);
+		final int rootQ = find(q);
+		if (rootP == rootQ)
+			return;
+
+		// make smaller root point to larger one
+		if (size[rootP] < size[rootQ]) {
+			id[rootP] = rootQ;
+			size[rootQ] += size[rootP];
+		} else {
+			id[rootQ] = rootP;
+			size[rootP] += size[rootQ];
+		}
+		m--;
+	}
+  
+	public void move(final int s, final int t) {
+		final int S = find(s);
+		final int T = find(t);
+		if (S == T)
+			return;
+
+
+		// if (size[S] < size[T]) {
+			id[S] = T;
+			size[T] += size[S];
+		// } else {
+		// 	id[T] = S;
+		// 	size[S] += size[T];
+		// }
+		m--;
+	}
 
   private int query(int s, int t) {
     return id[s] == id[t] ? 1 : 0;
-  }
-
-  private void union(int s, int t) {
-    int S = id[s];
-    int T = id[t];
-
-    if (query(s, t) == 1)
-      return;
-
-    for (int i = 0; i < n - 1; i++) {
-      if (id[i] == S) {
-        id[i] = T;
-      }
-    }
-
-  }
-
-  private void move(int s, int t) {
-    if (s == t)
-      return;
-    for (int i = 0; i < n - 1; i++) {
-      if (id[i] == s)
-        id[i] = t;
-    }
-
   }
 
   public Integer[] parseLine(String input) {
