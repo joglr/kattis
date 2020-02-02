@@ -50,7 +50,7 @@ public class Main {
 
     switch (operation) {
     case 0:
-      int result = connected(s, t);
+      int result = query(s, t);
       System.out.println(result);
       break;
     case 1:
@@ -64,7 +64,7 @@ public class Main {
     }
   }
 
-  private int connected(int s, int t) {
+  private int query(int s, int t) {
     return id[s] == id[t] ? 1 : 0;
   }
 
@@ -72,7 +72,7 @@ public class Main {
     int sSet = id[s];
     int tSet = id[t];
 
-    if (s == t || connected(s, t) == 1)
+    if (s == t || query(s, t) == 1)
       return;
 
     for (int i = 0; i < n - 1; i++) {
