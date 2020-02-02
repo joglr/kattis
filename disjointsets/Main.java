@@ -69,15 +69,15 @@ public class Main {
   }
 
   private void union(int s, int t) {
-    int sSet = id[s];
-    int tSet = id[t];
+    int S = id[s];
+    int T = id[t];
 
-    if (s == t || query(s, t) == 1)
+    if (query(s, t) == 1)
       return;
 
     for (int i = 0; i < n - 1; i++) {
-      if (id[i] == sSet) {
-        id[i] = tSet;
+      if (id[i] == S) {
+        id[i] = T;
       }
     }
 
