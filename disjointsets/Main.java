@@ -10,7 +10,7 @@ import java.util.List;
 public class Main {
   private int n; // amount of disjoint sets
   private int m; // amount of operations
-  private int[] disjointSetFamily;
+  private int[] id;
 
   public static void main(String[] args) throws NumberFormatException, IOException {
 
@@ -25,10 +25,10 @@ public class Main {
 
     n = numbers[0];
     m = numbers[1];
-    disjointSetFamily = new int[n];
+    id = new int[n];
 
     for (int i = 0; i < n; i++) {
-      disjointSetFamily[i] = i;
+      id[i] = i;
     }
 
     for (int i = 0; i < m; i++) {
@@ -65,19 +65,19 @@ public class Main {
   }
 
   private int connected(int s, int t) {
-    return disjointSetFamily[s] == disjointSetFamily[t] ? 1 : 0;
+    return id[s] == id[t] ? 1 : 0;
   }
 
   private void union(int s, int t) {
-    int sSet = disjointSetFamily[s];
-    int tSet = disjointSetFamily[t];
+    int sSet = id[s];
+    int tSet = id[t];
 
     if (s == t || connected(s, t) == 1)
       return;
 
     for (int i = 0; i < n - 1; i++) {
-      if (disjointSetFamily[i] == sSet) {
-        disjointSetFamily[i] = tSet;
+      if (id[i] == sSet) {
+        id[i] = tSet;
       }
     }
 
@@ -87,8 +87,8 @@ public class Main {
     if (s == t)
       return;
     for (int i = 0; i < n - 1; i++) {
-      if (disjointSetFamily[i] == s)
-        disjointSetFamily[i] = t;
+      if (id[i] == s)
+        id[i] = t;
     }
 
   }
