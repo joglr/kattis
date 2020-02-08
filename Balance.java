@@ -15,25 +15,10 @@ public class Balance implements Testable {
 
   @Override
   public int receiveInput(String line) {
-    // TODO Auto-generated method stub
     String[] inputs = line.split("");
 
     for (String input : inputs) {
       handleInput(input);
-      switch (input) {
-      case "(":
-        balanceRound++;
-        break;
-      case ")":
-        balanceRound--;
-        break;
-      case "[":
-        balanceSquare++;
-        break;
-      case "]":
-        balanceSquare--;
-        break;
-      }
     }
 
     return isBalanced();
@@ -45,7 +30,20 @@ public class Balance implements Testable {
   }
 
   void handleInput(String input) {
-
+    switch (input) {
+    case "(":
+      balanceRound++;
+      break;
+    case ")":
+      balanceRound--;
+      break;
+    case "[":
+      balanceSquare++;
+      break;
+    case "]":
+      balanceSquare--;
+      break;
+    }
   }
 
   @Override
