@@ -1,0 +1,27 @@
+{
+  "name": "kattis",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joglr/kattis.git"
+  },
+  "keywords": [],
+  "author": "Jonas Røssum",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joglr/kattis/issues"
+  },
+  "homepage": "https://github.com/joglr/kattis#readme",
+  "dependencies": {
+    "prettier": "^1.19.1",
+    "prettier-plugin-java": "^0.7.0"
+  }
+}
