@@ -5,16 +5,15 @@ import java.io.IOException;
  */
 public class BalanceTest extends Test {
 
+  Testable balance;
+
   public BalanceTest() throws IOException {
     super();
   }
 
-  Testable balance;
-
   @Override
   Testable instantiateTestable() {
-    balance = new Balance();
-    return balance;
+    return new Balance();
   }
 
   public static void main(String[] args) throws IOException {
