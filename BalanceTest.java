@@ -1,11 +1,11 @@
-import java.io.FileNotFoundException;
+import java.io.IOException;
 
 /**
  * BalanceTest
  */
 public class BalanceTest extends Test {
 
-  public BalanceTest() throws FileNotFoundException {
+  public BalanceTest() throws IOException {
     super();
   }
 
@@ -17,7 +17,7 @@ public class BalanceTest extends Test {
     return balance;
   }
 
-  public static void main(String[] args) throws FileNotFoundException {
+  public static void main(String[] args) throws IOException {
     new BalanceTest();
   }
 

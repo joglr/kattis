@@ -1,49 +1,59 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.Reader;
+
 /**
  * Balance
  */
 public class Balance implements Testable {
 
   StringBuilder out = new StringBuilder();
-  int n;
   int balanceRound = 0;
   int balanceSquare = 0;
 
-  @Override
-  public void init(String line) {
-    n = Integer.parseInt(line);
+  public String run() throws IOException {
+    return run(new InputStreamReader(System.in));
   }
 
-  @Override
-  public int receiveInput(String line) {
-    String[] inputs = line.split("");
+  public String run(Reader inStream) throws IOException {
+    BufferedReader in = new BufferedReader(inStream);
 
-    for (String input : inputs) {
-      handleInput(input);
-    }
+    int n = Integer.parseInt(in.readLine());
+    int i = 0;
 
+    int t = in.read();
+    do {
+      char input = (char) t;
+
+      switch (input) {
+      case '(':
+        balanceRound++;
+        break;
+      case ')':
+        if (i == 0)
+          return "0";
+        balanceRound--;
+        break;
+      case '[':
+        balanceSquare++;
+        break;
+      case ']':
+        if (i == 0)
+          return "0";
+        balanceSquare--;
+        break;
+      }
+      i++;
+      t = in.read();
+    } while (t != -1);
+
+    in.close();
     return isBalanced();
-
   }
 
-  int isBalanced() {
-    return balanceRound == 0 && balanceSquare == 0 ? 1 : 0;
-  }
-
-  void handleInput(String input) {
-    switch (input) {
-    case "(":
-      balanceRound++;
-      break;
-    case ")":
-      balanceRound--;
-      break;
-    case "[":
-      balanceSquare++;
-      break;
-    case "]":
-      balanceSquare--;
-      break;
-    }
+  String isBalanced() {
+    return balanceRound == 0 && balanceSquare == 0 ? "1" : "0";
   }
 
   @Override
@@ -56,9 +66,9 @@ public class Balance implements Testable {
     return 4;
   }
 
-  @Override
-  public String getOut() {
-    return out.toString();
+  public static void main(String[] args) throws IOException {
+    ;
+    new Balance().run();
   }
 
 }
