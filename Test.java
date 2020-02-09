@@ -1,5 +1,5 @@
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -7,7 +7,7 @@ public abstract class Test {
 
   abstract Testable instantiateTestable();
 
-  public Test() throws FileNotFoundException {
+  public Test() throws IOException {
     Testable testable = instantiateTestable();
     Stopwatch total = new Stopwatch("total");
     boolean happy = true;
@@ -18,35 +18,32 @@ public abstract class Test {
       File outputFile = new File(testable.getTestsFolder() + "/" + (i + 1) + ".ans");
 
       Scanner inputReader = new Scanner(inputFile);
-      Scanner outputReader = new Scanner(outputFile);
+      Scanner expectedOutputReader = new Scanner(outputFile);
 
-      testable.init(inputReader.nextLine());
+      String result = testable.run(inputReader);
+      String[] lines = result.split("\n");
 
-      while (inputReader.hasNextLine()) {
-        String input = inputReader.nextLine();
-        Integer output = testable.receiveInput(input);
+      for (String line : lines) {
 
-        if (output != -1) {
+        String expectedOutput = expectedOutputReader.nextLine();
 
-          System.out.print(output);
-          int expectedOutputValue = outputReader.nextInt();
+        System.out.print(line);
 
-          if (output != expectedOutputValue) {
-            happy = false;
+        if (line.equals(expectedOutput)) {
+          System.out.print(" ✔");
+        } else {
+          happy = false;
 
-            System.out.print(" ❌ wrong output, expected: " + expectedOutputValue);
-
-          } else {
-            System.out.print(" ✔");
-          }
-
-          System.out.println();
+          System.out.print(" ❌ wrong output, expected: " + expectedOutput);
         }
+
+        System.out.println();
       }
 
       inputReader.close();
-      outputReader.close();
+      expectedOutputReader.close();
     }
+
     System.out.println(happy ? "yay 🎉" : " something is wrong...🤔 ");
     total.printEllapsedTimeInMs("ran " + testable.getTestCount() + " tests from folder " + testable.getTestsFolder());
   }

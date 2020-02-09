@@ -1,13 +1,12 @@
+import java.io.IOException;
+import java.util.Scanner;
+
 interface Testable {
 
   String getTestsFolder();
 
-  void init(String line);
-
   int getTestCount();
 
-  int receiveInput(String line);
-
-  String getOut();
+  String run(Scanner in) throws IOException;
 
 }
