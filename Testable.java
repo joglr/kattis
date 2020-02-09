@@ -1,5 +1,5 @@
 import java.io.IOException;
-import java.util.Scanner;
+import java.io.Reader;
 
 interface Testable {
 
@@ -7,6 +7,6 @@ interface Testable {
 
   int getTestCount();
 
-  String run(Scanner in) throws IOException;
+  String run(Reader in) throws IOException;
 
 }

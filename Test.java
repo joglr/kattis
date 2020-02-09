@@ -1,4 +1,6 @@
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -14,18 +16,18 @@ public abstract class Test {
 
     for (int i = 0; i < testable.getTestCount(); i++) {
 
-      File inputFile = new File(testable.getTestsFolder() + "/" + (i + 1) + ".in");
-      File outputFile = new File(testable.getTestsFolder() + "/" + (i + 1) + ".ans");
+      FileReader inputFile = new FileReader(testable.getTestsFolder() + "/" + (i + 1) + ".in");
+      FileReader expectedOutputFile = new FileReader(testable.getTestsFolder() + "/" + (i + 1) + ".ans");
 
-      Scanner inputReader = new Scanner(inputFile);
-      Scanner expectedOutputReader = new Scanner(outputFile);
+      BufferedReader inputReader = new BufferedReader(inputFile);
+      BufferedReader expectedOutputReader = new BufferedReader(expectedOutputFile);
 
       String result = testable.run(inputReader);
       String[] lines = result.split("\n");
 
       for (String line : lines) {
 
-        String expectedOutput = expectedOutputReader.nextLine();
+        String expectedOutput = expectedOutputReader.readLine();
 
         System.out.print(line);
 
@@ -34,7 +36,7 @@ public abstract class Test {
         } else {
           happy = false;
 
-          System.out.print(" ❌ wrong output, expected: " + expectedOutput);
+          System.out.print(" × wrong output, expected: " + expectedOutput);
         }
 
         System.out.println();
@@ -44,7 +46,7 @@ public abstract class Test {
       expectedOutputReader.close();
     }
 
-    System.out.println(happy ? "yay 🎉" : " something is wrong...🤔 ");
+    System.out.println();
     total.printEllapsedTimeInMs("ran " + testable.getTestCount() + " tests from folder " + testable.getTestsFolder());
   }
 
