@@ -1,9 +1,7 @@
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.Scanner;
 
 public abstract class Test {
 
@@ -12,7 +10,6 @@ public abstract class Test {
   public Test() throws IOException {
     Testable testable = instantiateTestable();
     Stopwatch total = new Stopwatch("total");
-    boolean happy = true;
 
     for (int i = 0; i < testable.getTestCount(); i++) {
 
@@ -34,8 +31,6 @@ public abstract class Test {
         if (line.equals(expectedOutput)) {
           System.out.print(" ✔");
         } else {
-          happy = false;
-
           System.out.print(" × wrong output, expected: " + expectedOutput);
         }
 
