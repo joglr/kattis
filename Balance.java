@@ -20,9 +20,11 @@ public class Balance implements Testable {
     BufferedReader in = new BufferedReader(inStream);
 
     int n = Integer.parseInt(in.readLine());
+    if (n % 2 != 0)
+      return "0";
     int i = 0;
-
     int t = in.read();
+
     do {
       char input = (char) t;
 
@@ -46,7 +48,7 @@ public class Balance implements Testable {
       }
       i++;
       t = in.read();
-    } while (t != -1);
+    } while (t != -1 && i < n);
 
     in.close();
     return isBalanced();
@@ -63,11 +65,10 @@ public class Balance implements Testable {
 
   @Override
   public int getTestCount() {
-    return 4;
+    return 12;
   }
 
   public static void main(String[] args) throws IOException {
-    ;
     new Balance().run();
   }
 
