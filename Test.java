@@ -9,7 +9,7 @@ public abstract class Test {
 
   public Test() throws IOException {
     Testable testable = instantiateTestable();
-    Stopwatch total = new Stopwatch("total");
+    // // Stopwatch total = new Stopwatch("total");
 
     for (int i = 0; i < testable.getTestCount(); i++) {
 
@@ -42,7 +42,8 @@ public abstract class Test {
     }
 
     System.out.println();
-    total.printEllapsedTimeInMs("ran " + testable.getTestCount() + " tests from folder " + testable.getTestsFolder());
+    // total.printEllapsedTimeInMs("ran " + testable.getTestCount() + " tests from
+    // folder " + testable.getTestsFolder());
   }
 
   public static int[] getIntsFromLine(String input, String delimiter) {
