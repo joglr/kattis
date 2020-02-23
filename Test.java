@@ -48,4 +48,16 @@ public abstract class Test {
   public static int[] getIntsFromLine(String input, String delimiter) {
     return Arrays.stream(input.split(delimiter)).mapToInt(Integer::parseInt).toArray();
   }
+
+  public static int[] getIntsFromLine(String input) {
+    return getIntsFromLine(input, " ");
+  }
+
+  public static String[] getStringsFromLine(String input, String delimiter) {
+    return input.split(delimiter);
+  }
+
+  public static String[] getStringsFromLine(String input) {
+    return getStringsFromLine(input, " ");
+  }
 }

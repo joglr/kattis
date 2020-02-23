@@ -6,65 +6,16 @@
   "configurations": [
     {
       "type": "java",
-      "name": "CodeLens (Launch) - Balance",
+      "name": "CodeLens (Launch) - GradesTest",
       "request": "launch",
-      "mainClass": "Balance",
+      "mainClass": "GradesTest",
       "projectName": "kattis_393cd6a1"
     },
     {
       "type": "java",
-      "name": "BalanceTest",
-      "request": "launch",
-      "mainClass": "BalanceTest",
-      "projectName": "kattis_393cd6a1"
-    },
-    {
-      "type": "java",
-      "name": "CodeLens (Launch) - SempaiTildes",
-      "request": "launch",
-      "mainClass": "SempaiTildes",
-      "projectName": "kattis_393cd6a1"
-    },
-    {
-      "type": "java",
-      "name": "CodeLens (Launch) - TildesTest",
-      "request": "launch",
-      "mainClass": "TildesTest",
-      "projectName": "kattis_393cd6a1"
-    },
-    {
-      "type": "java",
-      "name": "Main",
-      "request": "launch",
-      "mainClass": "Main",
-      "projectName": "kattis_393cd6a1"
-    },
-    {
-      "type": "java",
-      "name": "MainTest",
-      "request": "launch",
-      "mainClass": "MainTest",
-      "projectName": "kattis_393cd6a1"
-    },
-    {
-      "type": "java",
-      "name": "Debug current file",
+      "name": "Debug (Launch) - Current File",
       "request": "launch",
       "mainClass": "${file}"
-    },
-    {
-      "type": "java",
-      "name": "TildesTest",
-      "request": "launch",
-      "mainClass": "TildesTest",
-      "projectName": "kattis_393cd6a1"
-    },
-    {
-      "type": "java",
-      "name": "SempaiTildesTest",
-      "request": "launch",
-      "mainClass": "SempaiTildesTest",
-      "projectName": "kattis_393cd6a1"
     }
   ]
 }
