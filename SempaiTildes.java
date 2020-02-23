@@ -1,19 +1,21 @@
 import java.util.*;
 
 class SempaiTildes {
-    public Integer[] parentOf;
-    public Integer[] sizes;
+    public int[] parentOf;
+    public int[] sizes;
     String out = "";
+    StringBuilder outBuilder = new StringBuilder();
 
-    public SempaiTildes(Integer n, Integer m) {
+    public SempaiTildes(int n, int m) {
         // initialize variables
-        parentOf = new Integer[n];
-        sizes = new Integer[n];
+        parentOf = new int[n];
+        sizes = new int[n];
 
         for (var i = 0; i < n; i++) {
             parentOf[i] = i;
             sizes[i] = 1;
         }
+
     }
 
     public static void main(String[] args) {
@@ -21,13 +23,14 @@ class SempaiTildes {
 
         // n m
         String[] init = sc.nextLine().split(" ");
-        Integer n = Integer.valueOf(init[0]);
-        Integer m = Integer.valueOf(init[1]);
+        int n = Integer.valueOf(init[0]);
+        int m = Integer.valueOf(init[1]);
         SempaiTildes sempaiTildes = new SempaiTildes(n, m);
 
         // Output
 
         // traverse lines
+
         for (var i = 0; i < m; i++) {
             String[] line = sc.nextLine().split(" ");
             sempaiTildes.receiveInput(line);
@@ -44,25 +47,33 @@ class SempaiTildes {
      * @return the out
      */
     public String getOut() {
-        return out;
+        return outBuilder.toString();
     }
 
-    public Integer receiveInput(String[] line) {
+    public int receiveInput(String[] line) {
         switch (line[0]) {
         case "s":
-            Integer size = getSize(findRoot(Integer.valueOf(line[1]) - 1));
-            out += size + "\n";
+
+            // Stopwatch sw = new Stopwatch("size");
+            int size = getSize(findRoot(Integer.valueOf(line[1]) - 1));
+
+            // sw.printEllapsedTimeInMs();
+            // out += size + "\n";
+            outBuilder.append(size + "\n");
             return size;
 
         case "t":
+
+            // Stopwatch sw2 = new Stopwatch("merge");
             merge(Integer.valueOf(line[1]) - 1, Integer.valueOf(line[2]) - 1);
-            return null;
+            // sw2.printEllapsedTimeInMs();
+            return -1;
         default:
-            return null;
+            return -1;
         }
     }
 
-    public Integer getSize(Integer site) {
+    public int getSize(int site) {
         return sizes[site];
     }
 
@@ -74,11 +85,15 @@ class SempaiTildes {
         System.out.println();
     }
 
-    public void merge(Integer siteOne, Integer siteTwo) {
+    public void merge(int siteOne, int siteTwo) {
         // Find root of each
+
+        Stopwatch sw = new Stopwatch("findRoot");
         var rootOne = findRoot(siteOne);
         var rootTwo = findRoot(siteTwo);
+        sw.printEllapsedTimeInMs();
 
+        Stopwatch sw2 = new Stopwatch("merge");
         // If same root, skip
         if (rootOne == rootTwo)
             return;
@@ -97,9 +112,14 @@ class SempaiTildes {
             sizes[rootTwo] += sizes[rootOne];
             sizes[rootOne] = sizes[rootTwo];
         }
+
+        sw2.printEllapsedTimeInMs();
+
     }
 
-    public void changeTo(Integer from, Integer to) {
+
+
+    public void changeTo(int from, int to) {
         for (var i = 0; i < parentOf.length; i++) {
             if (parentOf[i] == from) {
                 parentOf[i] = to;
@@ -107,7 +127,7 @@ class SempaiTildes {
         }
     }
 
-    public Integer findRoot(Integer site) {
+    public int findRoot(int site) {
         // DO NOT recurse function, just simulate it
         // Is root? return
         if (site == parentOf[site]) {

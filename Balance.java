@@ -40,14 +40,12 @@ public class Balance implements Testable {
         if (popped != null && popped.equals("("))
           break;
         else
-          // throw new NumberFormatException();
           return "0";
       case "]":
         popped = stack.pop();
         if (popped != null && popped.equals("["))
           break;
         else
-          // throw new NumberFormatException();
           return "0";
       default:
         throw new InvalidParameterException("invalid");

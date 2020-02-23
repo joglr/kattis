@@ -1,0 +1,70 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "CodeLens (Launch) - Balance",
+      "request": "launch",
+      "mainClass": "Balance",
+      "projectName": "kattis_393cd6a1"
+    },
+    {
+      "type": "java",
+      "name": "BalanceTest",
+      "request": "launch",
+      "mainClass": "BalanceTest",
+      "projectName": "kattis_393cd6a1"
+    },
+    {
+      "type": "java",
+      "name": "CodeLens (Launch) - SempaiTildes",
+      "request": "launch",
+      "mainClass": "SempaiTildes",
+      "projectName": "kattis_393cd6a1"
+    },
+    {
+      "type": "java",
+      "name": "CodeLens (Launch) - TildesTest",
+      "request": "launch",
+      "mainClass": "TildesTest",
+      "projectName": "kattis_393cd6a1"
+    },
+    {
+      "type": "java",
+      "name": "Main",
+      "request": "launch",
+      "mainClass": "Main",
+      "projectName": "kattis_393cd6a1"
+    },
+    {
+      "type": "java",
+      "name": "MainTest",
+      "request": "launch",
+      "mainClass": "MainTest",
+      "projectName": "kattis_393cd6a1"
+    },
+    {
+      "type": "java",
+      "name": "Debug current file",
+      "request": "launch",
+      "mainClass": "${file}"
+    },
+    {
+      "type": "java",
+      "name": "TildesTest",
+      "request": "launch",
+      "mainClass": "TildesTest",
+      "projectName": "kattis_393cd6a1"
+    },
+    {
+      "type": "java",
+      "name": "SempaiTildesTest",
+      "request": "launch",
+      "mainClass": "SempaiTildesTest",
+      "projectName": "kattis_393cd6a1"
+    }
+  ]
+}
