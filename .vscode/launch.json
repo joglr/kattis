@@ -6,6 +6,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "CodeLens (Launch) - SeatAllocationTest",
+      "request": "launch",
+      "mainClass": "SeatAllocationTest",
+      "projectName": "kattis_393cd6a1"
+    },
+    {
+      "type": "java",
       "name": "CodeLens (Launch) - GradesTest",
       "request": "launch",
       "mainClass": "GradesTest",
