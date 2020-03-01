@@ -47,13 +47,8 @@ public class SeatAllocation implements Testable {
     sc.close();
 
     while (numSeatsToAllocate > 0) {
-      // Heap.sort(parties);
       Party p = maxPQ.delMax();
       p.recieveSeat();
-
-      // parties[parties.length - 1].recieveSeat();
-      // System.out.println(p.getIndex() + " gets a vote!");
-      // printParties(parties);
       maxPQ.insert(p);
       numSeatsToAllocate--;
     }
