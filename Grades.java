@@ -4,12 +4,8 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
-import java.util.TreeMap;
 import java.util.TreeSet;
 
 /**
@@ -19,19 +15,16 @@ public class Grades implements Testable {
 
   @Override
   public String getTestsFolder() {
-    // TODO Auto-generated method stub
     return "sempai4_1";
   }
 
   @Override
   public int getTestCount() {
-    // TODO Auto-generated method stub
     return 2;
   }
 
   @Override
   public String run(Reader in) throws IOException {
-    // TODO Auto-generated method stub
     BufferedReader br = new BufferedReader(in);
     int N = Integer.parseInt(br.readLine());
     // String[][] lines = new String[N][2];

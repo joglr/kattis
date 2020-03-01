@@ -1,14 +1,12 @@
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
-import java.util.Arrays;
 import java.util.Scanner;
 
 /**
  * SeatAllocation
  */
 public class SeatAllocation implements Testable {
-  Party[] parties;
 
   @Override
   public String getTestsFolder() {
@@ -29,22 +27,35 @@ public class SeatAllocation implements Testable {
     int numParties = nums[0];
     int numSeatsToAllocate = nums[1];
 
-    parties = new Party[numParties];
+    // System.out.println(
+    //   "Allocating " +
+    //   numSeatsToAllocate +
+    //   " seats between " +
+    //   numParties +
+    //   " parties"
+    // );
+
+    Party[] parties = new Party[numParties];
+    MaxPQ<Party> maxPQ = new MaxPQ<>();
 
     for (int i = 0; i < numParties; i++) {
       parties[i] = new Party(i, Test.getIntsFromLine(sc.nextLine())[0]);
+      maxPQ.insert(parties[i]);
     }
+    // printParties(parties);
 
     sc.close();
 
     while (numSeatsToAllocate > 0) {
-      Heap.sort(parties);
-      parties[parties.length - 1].recieveSeat();
-      // System.out.println(
-      //   parties[parties.length - 1].getIndex() + " gets a vote!"
-      // );
+      // Heap.sort(parties);
+      Party p = maxPQ.delMax();
+      p.recieveSeat();
+
+      // parties[parties.length - 1].recieveSeat();
+      // System.out.println(p.getIndex() + " gets a vote!");
+      // printParties(parties);
+      maxPQ.insert(p);
       numSeatsToAllocate--;
-      // printParties();
     }
 
     // Output seatAllocation
@@ -58,15 +69,20 @@ public class SeatAllocation implements Testable {
 
   int width = 10;
 
-  void printParties() {
-    System.out.println(f("i") + f("v") + f("q"));
+  void printParties(Party[] parties) {
+    System.out.println();
+    System.out.println(f("I") + f("V") + f("Q") + f("S"));
+    System.out.println((f("") + f("") + f("") + f("")).replace(" ", "-"));
+
     for (Party p : parties) {
       System.out.println(
         f(((Integer) (p.getIndex())).toString()) +
         f(((Double) Double.valueOf(p.getVotes())).toString()) +
-        f(((Double) p.getQuantifier()).toString())
+        f(((Double) p.getQuotient()).toString()) +
+        f(((Integer) p.getSeats()).toString())
       );
     }
+    System.out.println();
   }
 
   String f(String str) {
@@ -81,7 +97,7 @@ public class SeatAllocation implements Testable {
 }
 
 class Party implements Comparable<Party> {
-  double quantifier;
+  double quotient;
   int index;
   int votes;
   int seats = 0;
@@ -89,7 +105,7 @@ class Party implements Comparable<Party> {
   Party(int _index, int _votes) {
     index = _index;
     votes = _votes;
-    quantifier = _votes;
+    quotient = _votes;
   }
 
   /**
@@ -115,17 +131,17 @@ class Party implements Comparable<Party> {
 
   void recieveSeat() {
     seats++;
-    quantifier = votes / (seats);
+    quotient = Double.valueOf(votes) / Double.valueOf(seats + 1);
   }
 
-  public double getQuantifier() {
-    return quantifier;
+  public double getQuotient() {
+    return quotient;
   }
 
   @Override
   public int compareTo(Party p) {
-    if (p.getQuantifier() < getQuantifier()) return 1;
-    if (p.getQuantifier() > getQuantifier()) return -1;
+    if (p.getQuotient() < getQuotient()) return 1;
+    if (p.getQuotient() > getQuotient()) return -1;
     return 0;
   }
 }

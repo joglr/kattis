@@ -6,6 +6,7 @@ import java.io.IOException;
 public class SeatAllocationTest extends Test {
 
   public SeatAllocationTest() throws IOException {
+    // super(4);
     super();
   }
 

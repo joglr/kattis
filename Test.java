@@ -12,12 +12,13 @@ public abstract class Test {
   }
 
   public Test(Integer testID) throws IOException {
-    Testable testable = instantiateTestable();
     // // Stopwatch total = new Stopwatch("total");
 
+    Testable testable = instantiateTestable();
     if (testID == null) {
       for (int i = 1; i <= testable.getTestCount(); i++) {
         runTest(testable, i);
+        testable = instantiateTestable();
       }
     } else runTest(testable, testID);
 
