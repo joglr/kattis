@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -27,9 +28,6 @@ public class SeatAllocation implements Testable {
 
     int numParties = nums[0];
     int numSeatsToAllocate = nums[1];
-
-    // Array for keeping track of seats
-    int[] seats = new int[numParties];
 
     parties = new Party[numParties];
 
@@ -74,6 +72,12 @@ public class SeatAllocation implements Testable {
   String f(String str) {
     return String.format("%1$" + width + "s", str);
   }
+
+  public static void main(String[] args) throws IOException {
+    System.out.println(
+      new SeatAllocation().run(new InputStreamReader(System.in))
+    );
+  }
 }
 
 class Party implements Comparable<Party> {
@@ -110,7 +114,8 @@ class Party implements Comparable<Party> {
   }
 
   void recieveSeat() {
-    quantifier = votes / (++seats);
+    seats++;
+    quantifier = votes / (seats);
   }
 
   public double getQuantifier() {
