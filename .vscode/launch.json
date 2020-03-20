@@ -6,6 +6,12 @@
   "configurations": [
     {
       "type": "java",
+      "name": "HarmonyTest",
+      "request": "launch",
+      "mainClass": "HarmonyTest"
+    },
+    {
+      "type": "java",
       "name": "CodeLens (Launch) - SeatAllocationTest",
       "request": "launch",
       "mainClass": "SeatAllocationTest",

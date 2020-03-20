@@ -8,7 +8,6 @@ import java.security.InvalidParameterException;
  * Balance
  */
 public class Balance implements Testable {
-
   Stack stack;
   StringBuilder out = new StringBuilder();
 
@@ -20,8 +19,7 @@ public class Balance implements Testable {
     BufferedReader in = new BufferedReader(inStream);
 
     int n = Integer.parseInt(in.readLine());
-    if (n % 2 != 0)
-      return "0";
+    if (n % 2 != 0) return "0";
     int i = 0;
     int t = in.read();
     stack = new Stack(n);
@@ -31,24 +29,18 @@ public class Balance implements Testable {
       String popped;
 
       switch (input) {
-      case "[":
-      case "(":
-        stack.push(input);
-        break;
-      case ")":
-        popped = stack.pop();
-        if (popped != null && popped.equals("("))
+        case "[":
+        case "(":
+          stack.push(input);
           break;
-        else
-          return "0";
-      case "]":
-        popped = stack.pop();
-        if (popped != null && popped.equals("["))
-          break;
-        else
-          return "0";
-      default:
-        throw new InvalidParameterException("invalid");
+        case ")":
+          popped = stack.pop();
+          if (popped != null && popped.equals("(")) break; else return "0";
+        case "]":
+          popped = stack.pop();
+          if (popped != null && popped.equals("[")) break; else return "0";
+        default:
+          throw new InvalidParameterException("invalid");
       }
       i++;
       t = in.read();
@@ -72,37 +64,34 @@ public class Balance implements Testable {
     System.out.println(new Balance().run());
   }
 
-}
-
-/**
- * Stack
- */
-class Stack {
-  private String[] stack;
-  private int pointer = 0;
-
-  public Stack(int n) {
-    stack = new String[n];
-  }
-
-  public void push(String str) {
-    stack[pointer] = str;
-    pointer++;
-  }
-
-  public String pop() {
-    if (pointer == 0)
-      return null;
-    pointer--;
-    String poppedItem = stack[pointer];
-    return poppedItem;
-  }
-
   /**
-   * @return the pointer
+   * Stack
    */
-  public int getPointer() {
-    return pointer;
-  }
+  private class Stack {
+    private String[] stack;
+    private int pointer = 0;
 
+    public Stack(int n) {
+      stack = new String[n];
+    }
+
+    public void push(String str) {
+      stack[pointer] = str;
+      pointer++;
+    }
+
+    public String pop() {
+      if (pointer == 0) return null;
+      pointer--;
+      String poppedItem = stack[pointer];
+      return poppedItem;
+    }
+
+    /**
+     * @return the pointer
+     */
+    public int getPointer() {
+      return pointer;
+    }
+  }
 }
