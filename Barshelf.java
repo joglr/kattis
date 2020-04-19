@@ -1,7 +1,6 @@
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
@@ -10,7 +9,6 @@ import java.util.Set;
  * Barshelf
  */
 public class Barshelf implements Testable {
-  Graph graph;
 
   @Override
   public String getTestsFolder() {
@@ -38,18 +36,23 @@ public class Barshelf implements Testable {
   }
 
   int countMessyTriplets(int[] nums) {
-    Set<int[]> messyTriplets = new HashSet<>();
+    // Loop through all the numbers
+    int messyTripletCount = 0;
     for (int i = 0; i < nums.length; i++) {
-      for (int j = 0; j < nums.length; j++) {
-        for (int k = 0; k < nums.length; k++) {
+      //
+      for (int j = i + 1; j < nums.length; j++) {
+        for (int k = j + 1; k < nums.length; k++) {
           int[] triplet = new int[] { nums[i], nums[j], nums[k] };
-          Arrays.sort(triplet);
-          if (triplet[0] >= 2 * triplet[1] && triplet[1] >= 2 * triplet[2])
-            messyTriplets.add(triplet);
+          int x = triplet[0];
+          int y = triplet[1];
+          int z = triplet[2];
+          if (x >= 2 * y && y >= 2 * z) {
+            messyTripletCount++;
+          }
         }
       }
     }
-    return messyTriplets.size();
+    return messyTripletCount;
   }
 
   public static void main(String[] args) throws IOException {
