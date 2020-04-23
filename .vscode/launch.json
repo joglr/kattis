@@ -6,6 +6,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "CodeLens (Launch) - BingTest",
+      "request": "launch",
+      "mainClass": "BingTest",
+      "projectName": "kattis_393cd6a1"
+    },
+    {
+      "type": "java",
       "name": "CodeLens (Launch) - BarshelfTest",
       "request": "launch",
       "mainClass": "BarshelfTest",
