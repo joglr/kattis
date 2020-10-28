@@ -1,10 +1,11 @@
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.Scanner;
 
 public class Tetris implements Testable {
-  public static void main(String[] args) {
-    System.out.println("hello");
+  public static void main(String[] args) throws IOException {
+    System.out.println(new Tetris().run(new InputStreamReader(System.in)));
   }
 
   @Override
