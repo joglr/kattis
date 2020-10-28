@@ -6,6 +6,27 @@
   "configurations": [
     {
       "type": "java",
+      "name": "CodeLens (Launch) - Tetris",
+      "request": "launch",
+      "mainClass": "Tetris",
+      "projectName": "kattis_393cd6a1"
+    },
+    {
+      "type": "java",
+      "name": "CodeLens (Launch) - TetrisTest",
+      "request": "launch",
+      "mainClass": "TetrisTest",
+      "projectName": "kattis_393cd6a1"
+    },
+    {
+      "type": "java",
+      "name": "CodeLens (Launch) - VegetablesTest",
+      "request": "launch",
+      "mainClass": "VegetablesTest",
+      "projectName": "kattis_393cd6a1"
+    },
+    {
+      "type": "java",
       "name": "CodeLens (Launch) - BingTest",
       "request": "launch",
       "mainClass": "BingTest",
