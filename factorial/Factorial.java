@@ -1,4 +1,4 @@
-package uge5.Factorial;
+package factorial;
 
 class BadUserException extends RuntimeException {
 

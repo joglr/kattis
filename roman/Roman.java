@@ -1,4 +1,4 @@
-package uge5.Roman;
+package roman;
 
 /* Parses generalized Roman numerals. Allows more than three Cs, Xs, and Is in a row */
 public class Roman {
